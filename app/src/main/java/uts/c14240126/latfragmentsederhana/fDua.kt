@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 
 class fDua : Fragment() {
     override fun onCreateView(
@@ -24,5 +25,23 @@ class fDua : Fragment() {
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val _tvHasil = view.findViewById<TextView>(R.id.tvHasil)
+
+        var namaDiterima = ""
+        var alamatDiterima = ""
+
+        arguments?.let {
+            namaDiterima = it.getString("Nama") ?: ""
+            alamatDiterima = it.getString("Alamat") ?: ""
+        }
+
+        if (namaDiterima != "") {
+            _tvHasil.text = "Halo $namaDiterima! Alamat Anda $alamatDiterima"
+        }
     }
 }
