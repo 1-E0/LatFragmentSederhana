@@ -12,17 +12,26 @@ class fSatu : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_f_satu, container, false)
-        
-        val btnOpenFSatu = view.findViewById<Button>(R.id.btnOpenFSatu)
-        btnOpenFSatu.setOnClickListener {
-            val fragmentManager = requireActivity().supportFragmentManager
+
+        return inflater.inflate(R.layout.fragment_f_satu, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val _btnOpenFSatu = view.findViewById<Button>(R.id.btnOpenFSatu)
+
+        _btnOpenFSatu.setOnClickListener {
+            val fragmentManager = parentFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragment_container, fDua())
-            fragmentTransaction.addToBackStack(null)
+
+            val fragmentDua = fDua()
+
+            fragmentTransaction.replace(
+                R.id.fragment_container,
+                fragmentDua
+            )
             fragmentTransaction.commit()
         }
-
-        return view
     }
 }
